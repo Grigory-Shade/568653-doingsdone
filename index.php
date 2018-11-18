@@ -1,6 +1,40 @@
 <?php
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
+// массивы для категорий и задач
+$categories = ['Входящие', 'Учеба', 'Работа', 'Домашние дела', 'Авто'];
+$project = [
+                ['name' => 'Собеседование в IT компании',
+                 'date' => '01.12.2018',
+                 'categories' => '2',
+                 'complete' => false
+                ],
+                ['name' => 'Выполнить тестовое задание',
+                 'date' => '25.12.2018',
+                 'categories' => '2',
+                 'complete' => false
+                ],
+                ['name' => 'Сделать задание первого раздела',
+                 'date' => '21.12.2018',
+                 'categories' => '1',
+                 'complete' => true
+                ],
+                ['name' => 'Встреча с другом',
+                 'date' => '22.12.2018',
+                 'categories' => '0',
+                 'complete' => false
+                ],
+                ['name' => 'Купить корм для кота',
+                 'date' => 'Нет',
+                 'categories' => '3',
+                 'complete' => false
+                ],
+                 ['name' => 'Заказать пиццу',
+                  'date' => 'Нет',
+                  'categories' => '3',
+                  'complete' => false
+                 ]
+];
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -43,13 +77,15 @@ $show_complete_tasks = rand(0, 1);
         <div class="content">
             <section class="content__side">
                 <h2 class="content__side-heading">Проекты</h2>
-
+<!--Добавили вывод проектов-->
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
+                        <?php foreach ($categories as $catname): ?>
                         <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#">Название проекта</a>
+                            <a class="main-navigation__list-item-link" href="#"><?=$catname;?></a>
                             <span class="main-navigation__list-item-count">0</span>
                         </li>
+                        <?php endforeach; ?>
                     </ul>
                 </nav>
 
@@ -81,13 +117,19 @@ $show_complete_tasks = rand(0, 1);
                         <span class="checkbox__text">Показывать выполненные</span>
                     </label>
                 </div>
-
+<!--Добавили вывод задач-->
                 <table class="tasks">
-                    <tr class="tasks__item task">
+                    <?php foreach ($project as $key => $value):?>
+                    <tr class="tasks__item task
+                    <?php if ($value['complete'] && $show_complete_tasks == 0):?>
+                    task--completed visually-hidden
+                    <?php elseif ($value['complete']):?>
+                    task--completed
+                    <?php endif; ?>">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
                                 <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
-                                <span class="checkbox__text">Сделать главную страницу Дела в порядке</span>
+                                <span class="checkbox__text"><?=$value['name'];?></span>
                             </label>
                         </td>
 
@@ -95,8 +137,9 @@ $show_complete_tasks = rand(0, 1);
                             <a class="download-link" href="#">Home.psd</a>
                         </td>
 
-                        <td class="task__date"></td>
+                        <td class="task__date"><?=$value['date'];?></td>
                     </tr>
+                    <?php endforeach;?>
                     <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
                     <?php if ($show_complete_tasks == 1): ?>
                     <tr class="tasks__item task task--completed">
