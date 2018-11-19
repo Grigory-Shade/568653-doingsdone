@@ -34,7 +34,6 @@ $project = [
                   'categories' => '3',
                   'complete' => false
                  ],
-
 ];
 // Функция для подсчёта количества задач в категории
 function number_of_tasks ($project, $catkey) {
@@ -42,8 +41,8 @@ function number_of_tasks ($project, $catkey) {
                 foreach ($project as $item) {
                     if ($item['categories'] == $catkey) {
                              $j++;
-                    };
-                };
+                    }
+                }
                 return $j;
 }
 ?>
