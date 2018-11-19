@@ -33,8 +33,18 @@ $project = [
                   'date' => 'Нет',
                   'categories' => '3',
                   'complete' => false
-                 ]
+                 ],
 ];
+// Функция для подсчёта количества задач в категории
+function number_of_tasks ($project, $catkey) {
+        $j = 0;
+                foreach ($project as $item) {
+                    if ($item['categories'] == $catkey) {
+                             $j++;
+                    }
+                }
+                return $j;
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -80,10 +90,10 @@ $project = [
 <!--Добавили вывод проектов-->
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
-                        <?php foreach ($categories as $catname): ?>
+                        <?php foreach ($categories as $catkey => $catname): ?>
                         <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#"><?=$catname;?></a>
-                            <span class="main-navigation__list-item-count">0</span>
+                            <a class="main-navigation__list-item-link" href="#"><?=$catname; ?></a>
+                            <span class="main-navigation__list-item-count"><?=number_of_tasks($project, $catkey); ?></span>
                         </li>
                         <?php endforeach; ?>
                     </ul>
