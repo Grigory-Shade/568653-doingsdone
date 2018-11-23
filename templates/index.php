@@ -1,3 +1,4 @@
+<?php require('data.php'); ?>
 <h2 class="content__main-heading">Список задач</h2>
 
 <form class="search-form" action="index.php" method="post">
@@ -13,7 +14,7 @@
         <a href="/" class="tasks-switch__item">Завтра</a>
         <a href="/" class="tasks-switch__item">Просроченные</a>
     </nav>
-    <?php require('data.php');?>
+
     <label class="checkbox">
         <!--добавить сюда аттрибут "checked", если переменная $show_complete_tasks равна единице-->
         <input class="checkbox__input visually-hidden show_completed" type="checkbox"
@@ -24,7 +25,7 @@
 <!--Добавили вывод задач-->
 <table class="tasks">
     <?php foreach ($project as $key => $value):?>
-        <tr class="tasks__item task
+        <tr class="tasks__item task <?php if (deadline($value['date'])): ?>task--important<?php endif; ?>
                     <?php if ($value['complete'] && $show_complete_tasks == 0):?>
                     task--completed visually-hidden
                     <?php elseif ($value['complete']):?>

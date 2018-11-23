@@ -1,8 +1,9 @@
 
 <?php
 
+//require_once('data.php');
 require_once('function.php');
-require_once('data.php');
+
 
 $main_content = include_template('index.php', ['project' => $project]);
 $layout_content = include_template('layout.php', [
