@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
-<?php require('data.php'); ?>
+
 <head>
     <meta charset="UTF-8">
     <title><?=$title;?></title>

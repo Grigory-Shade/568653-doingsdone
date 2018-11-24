@@ -19,7 +19,6 @@ return $result;
 };
 // Функция для подсчёта количества задач в категории
 function number_of_tasks ($task_list, $project_index) {
-    $task_list = (array)$task_list;
     $j = 0;
     foreach ($task_list as $item) {
         if ($item['categories'] == $project_index) {
