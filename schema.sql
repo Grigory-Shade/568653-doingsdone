@@ -24,7 +24,7 @@ date_add DATE,
 date_end DATE,
 status   TINYINT(1) DEFAULT 0,
 name     CHAR(128),
-file     CHAR(256),
+file     CHAR(255),
 period   DATE,
 user_id INT(10),
 category_id INT(10)
