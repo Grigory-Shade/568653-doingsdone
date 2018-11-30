@@ -22,7 +22,7 @@ INSERT INTO
     projects(name, user_id, category_id)
 VALUES
     ('Купить корм для кота', 2 ,4),
-    ('Заказать пиццу', 1 ,4);
+    ('Заказать пиццу', 1 ,5);
 UPDATE projects SET status = 1 WHERE id = 3;
 <!--получить список из всех проектов для одного пользователя-->
 SELECT * FROM categories WHERE user_id = 1;

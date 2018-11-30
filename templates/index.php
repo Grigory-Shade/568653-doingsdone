@@ -25,11 +25,12 @@
 <!--Добавили вывод задач-->
 <table class="tasks">
     <?php foreach ($project as $key => $value):?>
-        <tr class="tasks__item task <?php if (deadline($value['date'])): ?>task--important<?php endif; ?>
-                    <?php if ($value['complete'] && $show_complete_tasks == 0):?>
+        <tr class="tasks__item task
+                    <?php if (deadline($value['period'])): ?>
+                    task--important
+                    <?php endif; ?>
+                    <?php if ($value['status'] == 1) :?>
                     task--completed visually-hidden
-                    <?php elseif ($value['complete']):?>
-                    task--completed
                     <?php endif; ?>">
             <td class="task__select">
                 <label class="checkbox task__checkbox">
@@ -42,7 +43,10 @@
                 <a class="download-link" href="#">Home.psd</a>
             </td>
 
-            <td class="task__date"><?=antiscript($value['date']);?></td>
+            <td class="task__date">
+                <?=antiscript($value['period']);?>
+                <?php if ($value['period'] == NULL): ?>Нет<?php endif; ?> 
+            </td>
         </tr>
     <?php endforeach;?>
     <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
