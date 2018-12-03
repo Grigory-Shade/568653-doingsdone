@@ -90,7 +90,7 @@ function db_get_prepare_stmt($link, $sql, $data = []) {
     return $stmt;
 }
 // Функция получения записей из базы данных (использует пользовательскую функцию db_get_prepare_stmt)
-function db_select_data($link, $sql) {
+function db_select_data($link, $sql, $data = []) {
 
  $result = [];
  $stmt = db_get_prepare_stmt($link, $sql, $data = []);

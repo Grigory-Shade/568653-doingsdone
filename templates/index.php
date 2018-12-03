@@ -25,13 +25,10 @@
 <!--Добавили вывод задач-->
 <table class="tasks">
     <?php foreach ($project as $key => $value):?>
+        <!--Используем краткий синтаксис для оператора if-->
         <tr class="tasks__item task
-                    <?php if (deadline($value['period'])): ?>
-                    task--important
-                    <?php endif; ?>
-                    <?php if ($value['status'] == 1) :?>
-                    task--completed visually-hidden
-                    <?php endif; ?>">
+            <?= (deadline($value['period'])) ? 'task--important': ''; ?>
+            <?= ($value['status'] == 1) ? 'task--completed visually-hidden': ''; ?> ">
             <td class="task__select">
                 <label class="checkbox task__checkbox">
                     <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
@@ -45,7 +42,7 @@
 
             <td class="task__date">
                 <?=antiscript($value['period']);?>
-                <?php if ($value['period'] == NULL): ?>Нет<?php endif; ?> 
+                <?php if ($value['period'] == NULL): ?>Нет<?php endif; ?>
             </td>
         </tr>
     <?php endforeach;?>
