@@ -1,4 +1,7 @@
 <?php
+// показывать или нет выполненные задачи
+$show_complete_tasks = rand(0, 1);
+
 // Часовой пояс по умолчанию
 date_default_timezone_set("Europe/Moscow");
 
@@ -33,7 +36,6 @@ function number_of_tasks ($task_list, $project_index) {
 // Функция для фильтрации сторонних скриптов
 function antiscript($str) {
     $text = htmlspecialchars($str);
-    //$text = strip_tags($str); Альтернативный вариант
 
     return $text;
 }
@@ -93,7 +95,7 @@ function db_get_prepare_stmt($link, $sql, $data = []) {
 function db_select_data($link, $sql, $data = []) {
 
  $result = [];
- $stmt = db_get_prepare_stmt($link, $sql, $data = []);
+ $stmt = db_get_prepare_stmt($link, $sql, $data);
  mysqli_stmt_execute($stmt);
  $res = mysqli_stmt_get_result($stmt);
 

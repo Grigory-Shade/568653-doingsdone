@@ -28,7 +28,8 @@
         <!--Используем краткий синтаксис для оператора if-->
         <tr class="tasks__item task
             <?= (deadline($value['period'])) ? 'task--important': ''; ?>
-            <?= ($value['status'] == 1) ? 'task--completed visually-hidden': ''; ?> ">
+            <?= ($value['status'] == 1 && $show_complete_tasks == 0) ? 'task--completed visually-hidden': ''; ?>
+            <?= ($value['status'] == 1 && $show_complete_tasks == 1) ? 'task--completed': ''; ?> ">
             <td class="task__select">
                 <label class="checkbox task__checkbox">
                     <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
@@ -51,7 +52,7 @@
         <tr class="tasks__item task task--completed">
             <td class="task__select">
                 <label class="checkbox task__checkbox">
-                    <input class="checkbox__input visually-hidden" type="checkbox" checked>
+                    <input class="checkbox__input visually-hidden" type="checkbox">
                     <span class="checkbox__text">Записаться на интенсив "Базовый PHP"</span>
                 </label>
             </td>

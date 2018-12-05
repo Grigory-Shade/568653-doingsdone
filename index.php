@@ -1,9 +1,10 @@
-
 <?php
 
 //require_once('data.php');
 require_once('function.php');
 require_once ('init.php');
+
+$user_id = 1;
 
 if (!$link) {
     $error = mysqli_connect_error();
@@ -13,13 +14,10 @@ if (!$link) {
     ]);
 }
 else {
-    $sql = 'SELECT id, name FROM categories WHERE user_id = 1';
+    $sql = 'SELECT id, name FROM categories WHERE user_id = ?';
     $result = mysqli_query($link, $sql);
-
-    if ($result) {
-        $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    }
-    else {
+    $categories = db_select_data($link, $sql, [$user_id]);
+    if (!$result) {
         $error = mysqli_error($link);
         $content = include_template('error.php', [
             'title' => 'Ошибка подключения',
@@ -36,13 +34,10 @@ if (!$link) {
     ]);
 }
 else {
-    $sql = 'SELECT status, name, file, period, category_id FROM projects WHERE user_id = 1';
+    $sql = 'SELECT status, name, file, period, category_id FROM projects WHERE user_id = ?';
     $result = mysqli_query($link, $sql);
-
-    if ($result) {
-        $project = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    }
-    else {
+    $project = db_select_data($link, $sql, [$user_id]);
+    if (!$result) {
         $error = mysqli_error($link);
         $content = include_template('error.php', [
             'title' => 'Ошибка подключения',
@@ -61,5 +56,6 @@ $layout_content = include_template('layout.php', [
     'categories' => $categories,
     'project' => $project,
 ]);
+//print_r ($categories);
 //print deadline($date_str);
 print ($layout_content);
