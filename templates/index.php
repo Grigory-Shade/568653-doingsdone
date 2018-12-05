@@ -25,12 +25,11 @@
 <!--Добавили вывод задач-->
 <table class="tasks">
     <?php foreach ($project as $key => $value):?>
-        <tr class="tasks__item task <?php if (deadline($value['date'])): ?>task--important<?php endif; ?>
-                    <?php if ($value['complete'] && $show_complete_tasks == 0):?>
-                    task--completed visually-hidden
-                    <?php elseif ($value['complete']):?>
-                    task--completed
-                    <?php endif; ?>">
+        <!--Используем краткий синтаксис для оператора if-->
+        <tr class="tasks__item task
+            <?= (deadline($value['period'])) ? 'task--important': ''; ?>
+            <?= ($value['status'] == 1 && $show_complete_tasks == 0) ? 'task--completed visually-hidden': ''; ?>
+            <?= ($value['status'] == 1 && $show_complete_tasks == 1) ? 'task--completed': ''; ?> ">
             <td class="task__select">
                 <label class="checkbox task__checkbox">
                     <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
@@ -42,7 +41,10 @@
                 <a class="download-link" href="#">Home.psd</a>
             </td>
 
-            <td class="task__date"><?=antiscript($value['date']);?></td>
+            <td class="task__date">
+                <?=antiscript($value['period']);?>
+                <?php if ($value['period'] == NULL): ?>Нет<?php endif; ?>
+            </td>
         </tr>
     <?php endforeach;?>
     <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
@@ -50,7 +52,7 @@
         <tr class="tasks__item task task--completed">
             <td class="task__select">
                 <label class="checkbox task__checkbox">
-                    <input class="checkbox__input visually-hidden" type="checkbox" checked>
+                    <input class="checkbox__input visually-hidden" type="checkbox">
                     <span class="checkbox__text">Записаться на интенсив "Базовый PHP"</span>
                 </label>
             </td>
