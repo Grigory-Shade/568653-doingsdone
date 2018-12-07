@@ -113,3 +113,10 @@ function db_insert_data($link, $sql, $data = []) {
     }
     return $result;
 }
+
+// Функция определения максимального индекса категории для текущего пользователя
+function max_category_id ($link, $user_id) {
+    $array_max_category_id = db_select_data($link, 'SELECT MAX(category_id) FROM projects WHERE user_id = ?', [$user_id]);
+    $max_category_id = $array_max_category_id[0]['MAX(category_id)'];
+    return $max_category_id;
+}
