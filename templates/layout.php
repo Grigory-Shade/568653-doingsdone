@@ -47,7 +47,9 @@
                                 <a class="main-navigation__list-item-link" href="index.php?cat_id=<?= $catname['id']; ?>">
                                     <?=$catname['name']; ?>
                                 </a>
-                                <span class="main-navigation__list-item-count"><?=number_of_tasks($project, $catname['id']); ?></span>
+                                <span class="main-navigation__list-item-count">
+                                    <?=number_of_tasks($count_projects, $catname['id']); ?>
+                                </span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
