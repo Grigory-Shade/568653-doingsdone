@@ -106,6 +106,7 @@ function db_select_data($link, $sql, $data = []) {
 }
 // Функция добавления записи в базу данных (использует пользовательскую функцию db_get_prepare_stmt)
 function db_insert_data($link, $sql, $data = []) {
+
     $stmt = db_get_prepare_stmt($link, $sql, $data);
     $result = mysqli_stmt_execute($stmt);
     if ($result) {
